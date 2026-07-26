@@ -1,0 +1,172 @@
+{
+  "users": [
+    {
+      "id": "user_1785076497427",
+      "name": "Alex Student",
+      "email": "student@studymate.ai",
+      "password": "demopass123",
+      "createdAt": "2026-07-26T14:34:57.427Z"
+    }
+  ],
+  "notes": [
+    {
+      "id": "note_1785079067587",
+      "userId": "user_1785076497427",
+      "title": "Introduction",
+      "subject": "AI",
+      "content": "Artificial Intelligence (AI) is the simulation of human intelligence by machines. AI systems are designed to perform tasks such as learning, reasoning, problem-solving, perception, and language understanding.\n\nMachine Learning is a subset of AI that allows computers to learn from data without being explicitly programmed. Deep Learning is a subset of Machine Learning that uses artificial neural networks with multiple layers.\n\nApplications of AI include virtual assistants, self-driving cars, recommendation systems, fraud detection, medical diagnosis, robotics, cybersecurity, and natural language processing.\n\nAdvantages of AI include improved accuracy, automation of repetitive tasks, increased productivity, and faster decision-making. However, AI also has disadvantages such as job displacement, privacy concerns, high development costs, and ethical challenges.",
+      "isPinned": false,
+      "createdAt": "2026-07-26T15:17:47.587Z",
+      "updatedAt": "2026-07-26T15:23:35.631Z"
+    }
+  ],
+  "aiResults": [
+    {
+      "noteId": "note_1785079067587",
+      "summary": {
+        "keyConcepts": [
+          "Artificial Intelligence (AI)",
+          "Machine Learning (ML)",
+          "Deep Learning (DL)",
+          "Neural Networks",
+          "Applications and Ethics"
+        ],
+        "importantPoints": [
+          "AI simulates human intelligence for tasks like learning, reasoning, and perception.",
+          "Machine Learning enables computers to learn from data without explicit programming.",
+          "Deep Learning uses multi-layer artificial neural networks as an ML subset.",
+          "AI powers modern solutions like self-driving cars, medical diagnosis, and virtual assistants.",
+          "While AI offers automation and productivity, it introduces challenges like job displacement and privacy issues."
+        ],
+        "bulletSummary": [
+          "AI is the simulation of human intelligence by computer systems.",
+          "Machine Learning (ML) enables systems to learn autonomously from data.",
+          "Deep Learning (DL) is a advanced subset of ML utilizing multi-layered neural networks.",
+          "Real-world applications include robotics, NLP, cybersecurity, and recommendation engines.",
+          "Pros: Enhanced accuracy, efficiency, and task automation.",
+          "Cons: High costs, privacy concerns, job loss, and ethical dilemmas."
+        ],
+        "revisionNotes": "AI simulates human cognitive functions. ML learns from data without explicit coding. DL uses deep neural networks. Key benefits include speed, accuracy, and automation. Major drawbacks include high costs, job displacement, privacy risks, and ethical concerns."
+      },
+      "updatedAt": "2026-07-26T15:23:07.948Z",
+      "quiz": [
+        {
+          "id": 1,
+          "question": "What is Machine Learning?",
+          "options": [
+            "A subset of AI that allows computers to learn from data without being explicitly programmed.",
+            "A subset of Deep Learning that uses artificial neural networks with multiple layers.",
+            "A hardware component required to run complex algorithms.",
+            "A system designed solely for virtual assistants."
+          ],
+          "correctAnswer": 0,
+          "explanation": "Machine Learning is a subset of AI that allows computers to learn from data without being explicitly programmed."
+        },
+        {
+          "id": 2,
+          "question": "Which technology is a subset of Machine Learning that uses artificial neural networks with multiple layers?",
+          "options": [
+            "Natural Language Processing",
+            "Robotics",
+            "Deep Learning",
+            "Cybersecurity"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Deep Learning is a subset of Machine Learning that uses artificial neural networks with multiple layers."
+        },
+        {
+          "id": 3,
+          "question": "Which of the following is mentioned as an advantage of Artificial Intelligence?",
+          "options": [
+            "Job displacement",
+            "Automation of repetitive tasks",
+            "High development costs",
+            "Ethical challenges"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Automation of repetitive tasks is an advantage of AI, whereas the other choices are listed as disadvantages."
+        },
+        {
+          "id": 4,
+          "question": "Which of the following is considered a disadvantage of AI?",
+          "options": [
+            "Improved accuracy",
+            "Increased productivity",
+            "Faster decision-making",
+            "Privacy concerns"
+          ],
+          "correctAnswer": 3,
+          "explanation": "Privacy concerns are listed as a disadvantage of AI alongside job displacement, high costs, and ethical challenges."
+        },
+        {
+          "id": 5,
+          "question": "Which of the following is NOT listed as an application of AI?",
+          "options": [
+            "Self-driving cars",
+            "Fraud detection",
+            "Manual physical construction",
+            "Medical diagnosis"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Manual physical construction is not mentioned as an AI application, whereas self-driving cars, fraud detection, and medical diagnosis are."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": 1,
+          "front": "What is Artificial Intelligence (AI)?",
+          "back": "AI is the simulation of human intelligence by machines designed to perform tasks such as learning, reasoning, problem-solving, perception, and language understanding."
+        },
+        {
+          "id": 2,
+          "front": "What is Machine Learning (ML)?",
+          "back": "Machine Learning is a subset of AI that allows computers to learn from data without being explicitly programmed."
+        },
+        {
+          "id": 3,
+          "front": "What is Deep Learning?",
+          "back": "Deep Learning is a subset of Machine Learning that uses artificial neural networks with multiple layers."
+        },
+        {
+          "id": 4,
+          "front": "What core tasks are AI systems designed to perform?",
+          "back": "AI systems are designed to perform learning, reasoning, problem-solving, perception, and language understanding."
+        },
+        {
+          "id": 5,
+          "front": "What are some major applications of AI?",
+          "back": "Applications include virtual assistants, self-driving cars, recommendation systems, fraud detection, medical diagnosis, robotics, cybersecurity, and natural language processing."
+        },
+        {
+          "id": 6,
+          "front": "What are the primary advantages of AI?",
+          "back": "Advantages include improved accuracy, automation of repetitive tasks, increased productivity, and faster decision-making."
+        },
+        {
+          "id": 7,
+          "front": "What are the primary disadvantages and challenges of AI?",
+          "back": "Disadvantages include job displacement, privacy concerns, high development costs, and ethical challenges."
+        },
+        {
+          "id": 8,
+          "front": "How do AI, Machine Learning, and Deep Learning relate to each other?",
+          "back": "Machine Learning is a subset of AI, and Deep Learning is a specialized subset of Machine Learning that uses multi-layered neural networks."
+        }
+      ],
+      "chatHistory": [
+        {
+          "id": "msg_1785079387948_u",
+          "sender": "user",
+          "text": "what is Deep learning",
+          "timestamp": "2026-07-26T15:23:07.948Z"
+        },
+        {
+          "id": "msg_1785079387948_a",
+          "sender": "ai",
+          "text": "Hello! I'm happy to help you with that. 😊\n\nAccording to your study notes, **Deep Learning** is a subset of **Machine Learning** that uses **artificial neural networks with multiple layers**. \n\nTo help you visualize how it fits into the bigger picture of AI, here is the hierarchy described in your notes:\n\n*   **Artificial Intelligence (AI):** The overarching technology where machines simulate human intelligence.\n    *   **Machine Learning (ML):** A subset of AI where computers learn from data without being explicitly programmed.\n        *   **Deep Learning (DL):** A specialized subset of Machine Learning that uses multi-layered artificial neural networks to process data.\n\nLet me know if you would like to go over Machine Learning or explore the applications and advantages of AI next!",
+          "timestamp": "2026-07-26T15:23:07.948Z"
+        }
+      ]
+    }
+  ]
+}
