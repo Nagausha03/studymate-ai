@@ -84,7 +84,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
               <span>Upload New Note</span>
             </button>
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium px-1">Tip: Press <kbd className="px-1.5 py-0.5 bg-white/70 dark:bg-white/10 border border-paper-300 dark:border-white/10 rounded font-mono text-[10px]">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 bg-white/70 dark:bg-white/10 border border-paper-300 dark:border-white/10 rounded font-mono text-[10px]">N</kbd> to quick-create</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium px-1">  </span>
           </div>
         </div>
 
