@@ -4,7 +4,7 @@ An AI-powered study companion. Students upload their notes and StudyMate uses AI
 
 **Business value:** EdTech. Students spend significant time manually condensing notes and creating study materials. StudyMate automates that process, helping learners retain material faster and study more effectively — with zero setup cost, since it runs entirely on free-tier infrastructure (MongoDB Atlas, Google Gemini API, Vercel).
 
-**Live demo:** https://studymate-ai.vercel.app *(replace with your actual production domain from Vercel → Settings → Domains)*
+**Live demo:** https://studymate-ai-xi.vercel.app/
 **Repository:** https://github.com/Nagausha03/studymate-ai
 
 ---
@@ -121,7 +121,6 @@ Every push to `main` triggers an automated GitHub Actions workflow (`.github/wor
 - **AI fallback content**: if Gemini is temporarily unavailable, the app still returns usable (if generic) study content derived from the note text, rather than showing an error — prioritizing a working user experience over a hard failure.
 
 ## AI tools used in this project
+Built with Google AI Studio (Gemini) for scaffolding, UI, and backend logic, with additional AI assistance for deployment configuration.
 
-Built with **Google AI Studio (Build)**, using the Gemini model, for the initial scaffolding, UI design, and backend logic. Debugging and infrastructure work — including MongoDB connection/TLS troubleshooting, Vercel deployment routing, and setting up the CI/CD pipeline — was done with **Claude**. Documentation was also written with Claude.
-
-The finished product's core learning features (AI Summary, Quiz, Flashcards, and the Ask AI Tutor chat) are themselves powered live by the **Google Gemini API**, fulfilling the assessment's brief to build a genuinely AI-powered application, not just one built using AI tooling.
+The finished product's core learning features (AI Summary, Quiz, Flashcards, and Ask AI Tutor) are themselves powered live by the Google Gemini API — fulfilling the assessment's goal of building a genuinely AI-powered application.
