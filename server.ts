@@ -14,7 +14,6 @@ app.use(express.json({ limit: '10mb' }));
 // --- Database persistence setup (MongoDB) ---
 // const MONGODB_URI = process.env.MONGODB_URI || "";
 const MONGODB_URI = process.env.MONGODB_URI || "";
-console.log("DEBUG MONGODB_URI:", JSON.stringify(MONGODB_URI));
 const mongoClient = new MongoClient(MONGODB_URI);
 let mongoDb: any = null;
 
