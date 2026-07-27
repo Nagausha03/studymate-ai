@@ -1,5 +1,141 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode (toggled via .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   StudyMate AI — Design Tokens
+   Direction: bright, illustrated, professional SaaS look.
+   Periwinkle-blue primary (the brand color), warm sunshine-yellow
+   secondary accent, deep navy for text and dark-mode surfaces.
+   Same token *names* as before so components don't need to change,
+   only the palette underneath them does.
+   ============================================================ */
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* "ink" = navy surfaces (used for dark-mode backgrounds + dark text accents) */
+  --color-ink-950: #10163a;
+  --color-ink-900: #161d47;
+  --color-ink-850: #1b2354;
+  --color-ink-800: #212a63;
+  --color-ink-700: #2c3680;
+  --color-ink-600: #3a459e;
+
+  /* "paper" = light neutral surfaces, tinted periwinkle */
+  --color-paper-50: #f6f7fd;
+  --color-paper-100: #edeffb;
+  --color-paper-200: #e0e4f7;
+  --color-paper-300: #cbd2ef;
+
+  /* "gold" = warm sunshine-yellow accent (from the illustration palette) */
+  --color-gold-300: #fbdb8f;
+  --color-gold-400: #f5bb4b;
+  --color-gold-500: #e8a428;
+  --color-gold-600: #c98614;
+
+  /* "violet" = periwinkle-blue brand/primary accent */
+  --color-violet-300: #aeb8f5;
+  --color-violet-400: #8c99ef;
+  --color-violet-500: #6c7ae0;
+  --color-violet-600: #5561c7;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  /* Glass surface — the recurring material of this UI */
+  .glass-panel {
+    background-color: rgb(255 255 255 / 0.75);
+    border: 1px solid rgb(255 255 255 / 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .dark .glass-panel {
+    background-color: rgb(22 29 71 / 0.6);
+    border: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .glass-card {
+    background-color: rgb(255 255 255 / 0.85);
+    border: 1px solid rgb(203 210 239 / 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .dark .glass-card {
+    background-color: rgb(21 27 66 / 0.65);
+    border: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  /* Signature glow — soft brand-color glow used sparingly on primary actions */
+  .glow-gold {
+    box-shadow: 0 0 0 1px rgb(108 122 224 / 0.25), 0 8px 24px -6px rgb(108 122 224 / 0.45);
+  }
+  .glow-gold-lg {
+    box-shadow: 0 0 60px -12px rgb(108 122 224 / 0.5), 0 0 0 1px rgb(108 122 224 / 0.2);
+  }
+
+  .text-gradient-gold {
+    background-image: linear-gradient(120deg, var(--color-violet-400), var(--color-violet-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .divider-gold {
+    height: 3px;
+    width: 2.5rem;
+    border-radius: 999px;
+    background-image: linear-gradient(90deg, var(--color-gold-400), transparent);
+  }
+
+  /* Entrance animation for sections/cards as they mount */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Gentle ambient drift for background glow blobs */
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(18px, -22px) scale(1.06); }
+  }
+  @keyframes float-slower {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-24px, 18px) scale(1.08); }
+  }
+  .animate-float-slow {
+    animation: float-slow 14s ease-in-out infinite;
+  }
+  .animate-float-slower {
+    animation: float-slower 18s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up, .animate-float-slow, .animate-float-slower {
+      animation: none;
+    }
+  }
+}
+
 @media print {
   body {
     background: white !important;
@@ -9,4 +145,3 @@
     display: none !important;
   }
 }
-

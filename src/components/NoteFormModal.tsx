@@ -89,20 +89,20 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full border border-slate-100 dark:border-slate-800 overflow-hidden my-8">
-        <div className="px-6 py-4 bg-slate-50 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 bg-ink-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+      <div className="glass-card rounded-2xl shadow-2xl max-w-2xl w-full border border-paper-100 dark:border-ink-800 overflow-hidden my-8">
+        <div className="px-6 py-4 bg-paper-50 dark:bg-ink-800 border-b border-paper-100 dark:border-ink-700 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300 flex items-center justify-center">
               <FileText className="w-4 h-4" />
             </div>
-            <h2 className="font-bold text-lg text-slate-900 dark:text-white">
+            <h2 className="font-bold text-lg text-ink-900 dark:text-white">
               {editingNote ? 'Edit Study Note' : 'Upload & Create Study Note'}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-colors"
+            className="w-8 h-8 rounded-full hover:bg-paper-300 dark:hover:bg-ink-700 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -110,13 +110,13 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
 
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {!editingNote && (
-            <div className="p-4 bg-indigo-50/60 dark:bg-indigo-950/40 rounded-xl border border-indigo-100 dark:border-indigo-900/60">
-              <label className="block text-xs font-bold uppercase text-indigo-900 dark:text-indigo-300 mb-2">
+            <div className="p-4 bg-violet-50/60 dark:bg-violet-950/40 rounded-xl border border-violet-100 dark:border-violet-900/60">
+              <label className="block text-xs font-bold uppercase text-violet-900 dark:text-violet-300 mb-2">
                 Upload File (.txt, .pdf) or Paste Below
               </label>
-              <label className="border-2 border-dashed border-indigo-200 dark:border-indigo-800 hover:border-indigo-400 dark:hover:border-indigo-600 bg-white dark:bg-slate-800 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition-colors group">
-                <Upload className="w-6 h-6 text-indigo-500 dark:text-indigo-400 mb-1 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              <label className="border-2 border-dashed border-violet-200 dark:border-violet-800 hover:border-violet-400 dark:hover:border-violet-600 bg-white dark:bg-ink-800 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition-colors group">
+                <Upload className="w-6 h-6 text-violet-500 dark:text-violet-400 mb-1 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-ink-700 dark:text-paper-300">
                   {fileName ? fileName : 'Click to browse or drag & drop files'}
                 </span>
                 <span className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Supports .txt and .pdf documents</span>
@@ -139,7 +139,7 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Chapter 4: Photosynthesis"
-                className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2.5 bg-paper-50 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 rounded-xl text-ink-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
               />
             </div>
             <div>
@@ -150,7 +150,7 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder="e.g. Biology"
-                className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2.5 bg-paper-50 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 rounded-xl text-ink-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
               />
             </div>
           </div>
@@ -166,22 +166,22 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Paste your lecture notes, study guide, or document content here..."
-              className="w-full p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono"
+              className="w-full p-4 bg-paper-50 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 rounded-xl text-ink-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 font-mono"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-paper-100 dark:border-ink-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="px-5 py-2.5 rounded-xl border border-paper-300 dark:border-ink-700 text-ink-700 dark:text-slate-300 font-semibold text-sm hover:bg-paper-50 dark:hover:bg-ink-800 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loadingFile}
-              className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-indigo-200 dark:shadow-none transition-all flex items-center gap-2"
+              className="px-6 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-violet-200 dark:shadow-none transition-all flex items-center gap-2"
             >
               <Check className="w-4 h-4" />
               <span>{editingNote ? 'Save Changes' : 'Upload & Create'}</span>

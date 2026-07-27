@@ -17,7 +17,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
       title: "Welcome to StudyMate AI!",
       description: `Hi ${userName}! Your intelligent learning workspace is ready. Let's take a quick 3-step tour to help you master your subjects faster.`,
       icon: Sparkles,
-      color: "bg-indigo-600 text-white"
+      color: "bg-violet-600 text-white"
     },
     {
       title: "1. Upload & Organize Notes",
@@ -51,11 +51,11 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 max-w-lg w-full overflow-hidden relative">
+    <div className="fixed inset-0 z-50 bg-ink-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+      <div className="glass-card rounded-3xl shadow-2xl border border-paper-100 dark:border-ink-800 max-w-lg w-full overflow-hidden relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-paper-300 rounded-full hover:bg-paper-100 dark:hover:bg-ink-800 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -70,13 +70,13 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all ${
-                  i === step ? 'w-8 bg-indigo-600' : 'w-2 bg-slate-200 dark:bg-slate-700'
+                  i === step ? 'w-8 bg-violet-600' : 'w-2 bg-paper-300 dark:bg-ink-700'
                 }`}
               />
             ))}
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-3">
+          <h2 className="text-2xl font-black text-ink-900 dark:text-white mb-3">
             {current.title}
           </h2>
 
@@ -88,14 +88,14 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
             {step > 0 ? (
               <button
                 onClick={() => setStep(step - 1)}
-                className="px-5 py-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold rounded-2xl transition-colors text-sm"
+                className="px-5 py-3 text-slate-600 dark:text-slate-300 hover:bg-paper-100 dark:hover:bg-ink-800 font-semibold rounded-2xl transition-colors text-sm"
               >
                 Back
               </button>
             ) : (
               <button
                 onClick={onClose}
-                className="px-5 py-3 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 font-medium text-sm transition-colors"
+                className="px-5 py-3 text-slate-500 hover:text-ink-700 dark:hover:text-slate-300 font-medium text-sm transition-colors"
               >
                 Skip Tour
               </button>
@@ -103,7 +103,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
 
             <button
               onClick={handleNext}
-              className="px-7 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center gap-2 text-sm ml-auto"
+              className="px-7 py-3.5 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center gap-2 text-sm ml-auto"
             >
               <span>{step === steps.length - 1 ? "Start Learning" : "Next"}</span>
               <ArrowRight className="w-4 h-4" />

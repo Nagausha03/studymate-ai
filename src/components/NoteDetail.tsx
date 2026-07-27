@@ -383,34 +383,34 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header bar */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6 animate-fade-up">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-semibold text-sm bg-white dark:bg-slate-900 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all"
+          className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 font-semibold text-sm glass-card px-4 py-2 rounded-xl border border-paper-300 dark:border-ink-800 shadow-sm hover:shadow-md hover:-translate-x-0.5 transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Dashboard</span>
         </button>
         <div className="flex items-center gap-3">
-          <span className="px-3.5 py-1 bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 text-xs font-bold rounded-full border border-indigo-100 dark:border-indigo-900">
+          <span className="px-3.5 py-1 bg-violet-50 dark:bg-violet-950/80 text-violet-700 dark:text-violet-300 text-xs font-bold rounded-full border border-violet-100 dark:border-violet-900">
             {note.subject}
           </span>
           <button
             onClick={handleReadAloud}
-            className={`inline-flex items-center gap-2 px-3.5 py-2 font-semibold text-xs rounded-xl shadow-sm transition-all ${
+            className={`inline-flex items-center gap-2 px-3.5 py-2 font-semibold text-xs rounded-xl shadow-sm hover:shadow-md transition-all ${
               isSpeaking
-                ? 'bg-amber-500 hover:bg-amber-600 text-white animate-pulse'
-                : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+                ? 'bg-gold-500 hover:bg-gold-600 text-white animate-pulse'
+                : 'glass-card border border-paper-300 dark:border-ink-800 text-ink-700 dark:text-slate-300 hover:bg-paper-50 dark:hover:bg-ink-800'
             }`}
             title={isSpeaking ? "Stop Reading" : "Read Note Aloud"}
           >
-            {isSpeaking ? <Square className="w-3.5 h-3.5 fill-current" /> : <Volume2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />}
+            {isSpeaking ? <Square className="w-3.5 h-3.5 fill-current" /> : <Volume2 className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />}
             <span>{isSpeaking ? 'Stop Reading' : 'Read Aloud'}</span>
           </button>
           <div className="relative">
             <button
               onClick={() => setIsExportOpen(!isExportOpen)}
-              className="inline-flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-violet-600 to-violet-500 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98] text-white font-semibold text-xs rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
               title="Export Study Material"
             >
               <Download className="w-3.5 h-3.5" />
@@ -418,15 +418,15 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
               <ChevronDown className="w-3.5 h-3.5" />
             </button>
             {isExportOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl py-2 z-30">
+              <div className="absolute right-0 mt-2 w-56 glass-card border border-paper-300 dark:border-ink-800 rounded-2xl shadow-xl py-2 z-30 animate-fade-up">
                 <button
                   onClick={() => {
                     handleExportMarkdown();
                     setIsExportOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800 flex items-center gap-2"
+                  className="w-full text-left px-4 py-2.5 text-xs font-medium text-ink-700 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-ink-800 flex items-center gap-2"
                 >
-                  <FileText className="w-3.5 h-3.5 text-indigo-600" />
+                  <FileText className="w-3.5 h-3.5 text-violet-600" />
                   <span>Download as Markdown (.md)</span>
                 </button>
                 <button
@@ -434,7 +434,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                     handleExportPDF();
                     setIsExportOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800 flex items-center gap-2"
+                  className="w-full text-left px-4 py-2.5 text-xs font-medium text-ink-700 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-ink-800 flex items-center gap-2"
                 >
                   <Download className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Print / Save as PDF</span>
@@ -445,27 +445,27 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 sm:p-8 mb-8">
-        <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-3">{note.title}</h1>
-        <div className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 max-h-40 overflow-y-auto font-mono">
+      <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 shadow-md p-6 sm:p-8 mb-8 animate-fade-up" style={{ animationDelay: '60ms' }}>
+        <h1 className="font-display text-2xl sm:text-3xl font-black text-ink-900 dark:text-white mb-3">{note.title}</h1>
+        <div className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed bg-paper-50 dark:bg-ink-800/60 p-4 rounded-2xl border border-paper-100 dark:border-ink-800 max-h-40 overflow-y-auto font-mono">
           {note.content}
         </div>
       </div>
 
       {error && (
-        <div className="mb-6 p-4 bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 rounded-2xl text-sm font-medium">
+        <div className="mb-6 p-4 bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 rounded-2xl text-sm font-medium animate-fade-up">
           {error}
         </div>
       )}
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800 mb-8 overflow-x-auto">
+      <div className="flex border-b border-paper-300 dark:border-ink-800 mb-8 overflow-x-auto">
         <button
           onClick={() => setActiveTab('summary')}
           className={`flex items-center gap-2 px-6 py-4 font-bold text-sm border-b-2 transition-colors shrink-0 ${
             activeTab === 'summary'
-              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/40'
-              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              ? 'border-violet-600 text-violet-600 dark:text-violet-400 bg-violet-50/50 dark:bg-violet-950/40'
+              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
           }`}
         >
           <FileText className="w-4 h-4" />
@@ -477,8 +477,8 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
           onClick={() => setActiveTab('quiz')}
           className={`flex items-center gap-2 px-6 py-4 font-bold text-sm border-b-2 transition-colors shrink-0 ${
             activeTab === 'quiz'
-              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/40'
-              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              ? 'border-violet-600 text-violet-600 dark:text-violet-400 bg-violet-50/50 dark:bg-violet-950/40'
+              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
           }`}
         >
           <HelpCircle className="w-4 h-4" />
@@ -490,8 +490,8 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
           onClick={() => setActiveTab('flashcards')}
           className={`flex items-center gap-2 px-6 py-4 font-bold text-sm border-b-2 transition-colors shrink-0 ${
             activeTab === 'flashcards'
-              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/40'
-              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              ? 'border-violet-600 text-violet-600 dark:text-violet-400 bg-violet-50/50 dark:bg-violet-950/40'
+              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
           }`}
         >
           <BookMarked className="w-4 h-4" />
@@ -503,14 +503,14 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
           onClick={() => setActiveTab('chat')}
           className={`flex items-center gap-2 px-6 py-4 font-bold text-sm border-b-2 transition-colors shrink-0 ${
             activeTab === 'chat'
-              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/40'
-              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              ? 'border-violet-600 text-violet-600 dark:text-violet-400 bg-violet-50/50 dark:bg-violet-950/40'
+              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
           }`}
         >
           <MessageSquare className="w-4 h-4" />
           <span>Ask AI Tutor</span>
           {aiResults.chatHistory && aiResults.chatHistory.length > 0 && (
-            <span className="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs rounded-full font-bold">
+            <span className="px-2 py-0.5 bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300 text-xs rounded-full font-bold">
               {aiResults.chatHistory.length / 2}
             </span>
           )}
@@ -519,20 +519,20 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
 
       {/* Tab Content: Summary */}
       {activeTab === 'summary' && (
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-up">
           {!aiResults.summary ? (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-12 text-center shadow-sm">
-              <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl mx-auto flex items-center justify-center mb-4">
+            <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-12 text-center shadow-sm">
+              <div className="w-16 h-16 bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 rounded-2xl mx-auto flex items-center justify-center mb-4 animate-float-slow">
                 <Sparkles className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Generate Smart AI Summary</h3>
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-2">Generate Smart AI Summary</h3>
               <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto mb-6">
                 Let Gemini extract key concepts, important bullet points, and quick revision notes from your study material.
               </p>
               <button
                 onClick={handleGenerateSummary}
                 disabled={loading}
-                className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all disabled:opacity-50 inline-flex items-center gap-2"
+                className="px-8 py-3.5 bg-gradient-to-r from-violet-600 to-violet-500 hover:brightness-110 hover:scale-105 active:scale-95 text-white font-bold rounded-2xl shadow-lg shadow-violet-500/20 transition-all duration-200 disabled:opacity-50 disabled:hover:scale-100 inline-flex items-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
                 <span>{loading ? 'Generating Summary...' : 'Generate Summary'}</span>
@@ -540,17 +540,17 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
             </div>
           ) : (
             <div className="space-y-6">
-              <div className="flex justify-between items-center bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/60 px-6 py-4 rounded-2xl flex-wrap gap-4">
-                <div className="flex items-center gap-2 text-indigo-900 dark:text-indigo-200 font-bold">
-                  <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              <div className="flex justify-between items-center bg-violet-50 dark:bg-violet-950/50 border border-violet-100 dark:border-violet-900/60 px-6 py-4 rounded-2xl flex-wrap gap-4">
+                <div className="flex items-center gap-2 text-violet-900 dark:text-violet-200 font-bold">
+                  <Sparkles className="w-5 h-5 text-violet-600 dark:text-violet-400" />
                   <span>AI Summary Generated Successfully</span>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap text-xs font-semibold text-slate-600 dark:text-slate-300">
-                  <span className="px-2.5 py-1 bg-white dark:bg-slate-800 rounded-lg border border-indigo-100 dark:border-indigo-900">{summaryWordCount} words</span>
-                  <span className="px-2.5 py-1 bg-white dark:bg-slate-800 rounded-lg border border-indigo-100 dark:border-indigo-900">{readingTime}</span>
+                  <span className="px-2.5 py-1 bg-white dark:bg-ink-800 rounded-lg border border-violet-100 dark:border-violet-900">{summaryWordCount} words</span>
+                  <span className="px-2.5 py-1 bg-white dark:bg-ink-800 rounded-lg border border-violet-100 dark:border-violet-900">{readingTime}</span>
                   <button
                     onClick={handleCopySummary}
-                    className="px-3 py-1.5 bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-slate-700 font-semibold text-xs rounded-xl border border-indigo-200 dark:border-indigo-800 shadow-sm transition-all flex items-center gap-1.5"
+                    className="px-3 py-1.5 bg-white dark:bg-ink-800 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-ink-700 font-semibold text-xs rounded-xl border border-violet-200 dark:border-violet-800 shadow-sm transition-all flex items-center gap-1.5"
                     title="Copy Summary to Clipboard"
                   >
                     <Copy className="w-3.5 h-3.5" />
@@ -559,7 +559,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                   <button
                     onClick={handleGenerateSummary}
                     disabled={loading}
-                    className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-sm transition-all"
+                    className="px-3 py-1.5 bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs rounded-xl shadow-sm transition-all"
                   >
                     {loading ? 'Regenerating...' : 'Regenerate'}
                   </button>
@@ -567,45 +567,45 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
               </div>
 
               {/* Quick Revision Notes */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border border-amber-200 dark:border-amber-950 rounded-3xl p-6 sm:p-8">
-                <h3 className="text-lg font-bold text-amber-900 dark:text-amber-300 mb-2 flex items-center gap-2">
-                  <BookMarked className="w-5 h-5 text-amber-600 dark:text-amber-400" /> Quick Revision Notes
+              <div className="bg-gradient-to-br from-gold-300 to-orange-50 dark:from-gold-600/30 dark:to-orange-950/30 border border-gold-300 dark:border-gold-600 rounded-3xl p-6 sm:p-8">
+                <h3 className="text-lg font-bold text-gold-600 dark:text-gold-300 mb-2 flex items-center gap-2">
+                  <BookMarked className="w-5 h-5 text-gold-600 dark:text-gold-400" /> Quick Revision Notes
                 </h3>
-                <p className="text-amber-900/90 dark:text-amber-200/90 text-sm sm:text-base leading-relaxed">
+                <p className="text-gold-600/90 dark:text-gold-300/90 text-sm sm:text-base leading-relaxed">
                   {aiResults.summary.revisionNotes}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Key Concepts */}
-                <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-indigo-600"></span> Key Concepts
+                <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-6 sm:p-8 shadow-sm">
+                  <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-4 flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-violet-600"></span> Key Concepts
                   </h3>
                   <ul className="space-y-3">
                     {aiResults.summary.keyConcepts.map((concept, idx) => (
-                      <li key={idx} className="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <span className="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      <li key={idx} className="flex items-start gap-3 bg-paper-50 dark:bg-ink-800/60 p-3.5 rounded-2xl border border-paper-100 dark:border-ink-800">
+                        <span className="w-6 h-6 rounded-lg bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                           {idx + 1}
                         </span>
-                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{concept}</span>
+                        <span className="text-sm font-semibold text-ink-800 dark:text-paper-300">{concept}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Important Points */}
-                <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-6 sm:p-8 shadow-sm">
+                  <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-4 flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-blue-600"></span> Important Points
                   </h3>
                   <ul className="space-y-3">
                     {aiResults.summary.importantPoints.map((pt, idx) => (
-                      <li key={idx} className="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800">
+                      <li key={idx} className="flex items-start gap-3 bg-paper-50 dark:bg-ink-800/60 p-3.5 rounded-2xl border border-paper-100 dark:border-ink-800">
                         <span className="w-6 h-6 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                           {idx + 1}
                         </span>
-                        <span className="text-sm text-slate-700 dark:text-slate-300">{pt}</span>
+                        <span className="text-sm text-ink-700 dark:text-slate-300">{pt}</span>
                       </li>
                     ))}
                   </ul>
@@ -613,15 +613,15 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
               </div>
 
               {/* Bullet Summary */}
-              <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-6 sm:p-8 shadow-sm">
+                <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-4 flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-emerald-600"></span> Bullet-Point Summary
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {aiResults.summary.bulletSummary.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+                    <div key={idx} className="flex items-start gap-3 bg-paper-50 dark:bg-ink-800/60 p-4 rounded-2xl border border-paper-100 dark:border-ink-800">
                       <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                      <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{item}</p>
+                      <p className="text-sm text-ink-700 dark:text-slate-300 leading-relaxed">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -633,20 +633,20 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
 
       {/* Tab Content: Quiz */}
       {activeTab === 'quiz' && (
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-up">
           {!aiResults.quiz ? (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-12 text-center shadow-sm">
-              <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl mx-auto flex items-center justify-center mb-4">
+            <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-12 text-center shadow-sm">
+              <div className="w-16 h-16 bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 rounded-2xl mx-auto flex items-center justify-center mb-4 animate-float-slow">
                 <HelpCircle className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Generate Interactive Quiz</h3>
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-2">Generate Interactive Quiz</h3>
               <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto mb-6">
                 Test your knowledge with 5 AI-generated multiple-choice questions complete with instant feedback and scoring.
               </p>
               <button
                 onClick={handleGenerateQuiz}
                 disabled={loading}
-                className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all disabled:opacity-50 inline-flex items-center gap-2"
+                className="px-8 py-3.5 bg-gradient-to-r from-violet-600 to-violet-500 hover:brightness-110 hover:scale-105 active:scale-95 text-white font-bold rounded-2xl shadow-lg shadow-violet-500/20 transition-all duration-200 disabled:opacity-50 disabled:hover:scale-100 inline-flex items-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
                 <span>{loading ? 'Generating Quiz...' : 'Generate Quiz'}</span>
@@ -654,21 +654,21 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
             </div>
           ) : (
             <div className="space-y-6">
-              <div className="flex justify-between items-center bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/60 px-6 py-4 rounded-2xl">
-                <div className="flex items-center gap-2 text-indigo-900 dark:text-indigo-200 font-bold">
-                  <HelpCircle className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              <div className="flex justify-between items-center bg-violet-50 dark:bg-violet-950/50 border border-violet-100 dark:border-violet-900/60 px-6 py-4 rounded-2xl">
+                <div className="flex items-center gap-2 text-violet-900 dark:text-violet-200 font-bold">
+                  <HelpCircle className="w-5 h-5 text-violet-600 dark:text-violet-400" />
                   <span>Practice Quiz (5 Questions)</span>
                 </div>
                 <div className="flex items-center gap-3">
                   {quizSubmitted && (
-                    <span className="text-sm font-bold text-indigo-950 dark:text-indigo-200 bg-indigo-200/70 dark:bg-indigo-900 px-3 py-1 rounded-xl">
+                    <span className="text-sm font-bold text-violet-950 dark:text-violet-200 bg-violet-200/70 dark:bg-violet-900 px-3 py-1 rounded-xl">
                       Score: {score} / {aiResults.quiz.length}
                     </span>
                   )}
                   <button
                     onClick={handleGenerateQuiz}
                     disabled={loading}
-                    className="px-4 py-2 bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-slate-700 font-semibold text-xs rounded-xl border border-indigo-200 dark:border-indigo-800 shadow-sm transition-all disabled:opacity-50"
+                    className="px-4 py-2 bg-white dark:bg-ink-800 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-ink-700 font-semibold text-xs rounded-xl border border-violet-200 dark:border-violet-800 shadow-sm transition-all disabled:opacity-50"
                   >
                     {loading ? 'Regenerating...' : 'Regenerate Quiz'}
                   </button>
@@ -679,9 +679,9 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                 const isAnswered = selectedAnswers[qIdx] !== undefined;
                 const isCorrect = selectedAnswers[qIdx] === q.correctAnswer;
                 return (
-                  <div key={q.id || qIdx} className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
-                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-4 flex items-start gap-3">
-                      <span className="w-7 h-7 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-sm flex items-center justify-center shrink-0">
+                  <div key={q.id || qIdx} className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-6 sm:p-8 shadow-sm">
+                    <h3 className="font-bold text-lg text-ink-900 dark:text-white mb-4 flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-xl bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300 font-bold text-sm flex items-center justify-center shrink-0">
                         {qIdx + 1}
                       </span>
                       <span>{q.question}</span>
@@ -690,7 +690,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                       {q.options.map((opt, optIdx) => {
                         const isSelected = selectedAnswers[qIdx] === optIdx;
-                        let btnStyle = "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-slate-700 hover:border-indigo-200";
+                        let btnStyle = "bg-paper-50 dark:bg-ink-800 border-paper-300 dark:border-ink-700 text-ink-700 dark:text-slate-300 hover:bg-violet-50/50 dark:hover:bg-ink-700 hover:border-violet-200";
 
                         if (quizSubmitted) {
                           if (optIdx === q.correctAnswer) {
@@ -699,7 +699,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                             btnStyle = "bg-red-50 dark:bg-red-950/60 border-red-300 dark:border-red-900 text-red-900 dark:text-red-200";
                           }
                         } else if (isSelected) {
-                          btnStyle = "bg-indigo-600 text-white border-indigo-600 shadow-md";
+                          btnStyle = "bg-violet-600 text-white border-violet-600 shadow-md";
                         }
 
                         return (
@@ -722,8 +722,8 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                     </div>
 
                     {quizSubmitted && (
-                      <div className="mt-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm">
-                        <span className="font-bold text-slate-900 dark:text-white">Explanation: </span>
+                      <div className="mt-4 p-4 rounded-2xl bg-paper-50 dark:bg-ink-800/80 border border-paper-300 dark:border-ink-700 text-sm">
+                        <span className="font-bold text-ink-900 dark:text-white">Explanation: </span>
                         <span className="text-slate-600 dark:text-slate-300">{q.explanation}</span>
                       </div>
                     )}
@@ -736,14 +736,14 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                   <button
                     onClick={handleQuizSubmit}
                     disabled={Object.keys(selectedAnswers).length === 0}
-                    className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all disabled:opacity-50"
+                    className="px-8 py-3.5 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-2xl shadow-lg shadow-violet-200 dark:shadow-none transition-all disabled:opacity-50"
                   >
                     Submit Quiz Answers
                   </button>
                 ) : (
                   <button
                     onClick={handleRetakeQuiz}
-                    className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all inline-flex items-center gap-2"
+                    className="px-8 py-3.5 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-2xl shadow-lg shadow-violet-200 dark:shadow-none transition-all inline-flex items-center gap-2"
                   >
                     <RotateCcw className="w-4 h-4" />
                     <span>Retake Quiz</span>
@@ -757,20 +757,20 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
 
       {/* Tab Content: Flashcards */}
       {activeTab === 'flashcards' && (
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-up">
           {!aiResults.flashcards ? (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-12 text-center shadow-sm">
-              <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl mx-auto flex items-center justify-center mb-4">
+            <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 p-12 text-center shadow-sm">
+              <div className="w-16 h-16 bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 rounded-2xl mx-auto flex items-center justify-center mb-4 animate-float-slow">
                 <BookMarked className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Generate Active Recall Flashcards</h3>
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-2">Generate Active Recall Flashcards</h3>
               <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md mx-auto mb-6">
                 Master core concepts with 8 interactive flashcards designed for active recall learning.
               </p>
               <button
                 onClick={handleGenerateFlashcards}
                 disabled={loading}
-                className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all disabled:opacity-50 inline-flex items-center gap-2"
+                className="px-8 py-3.5 bg-gradient-to-r from-violet-600 to-violet-500 hover:brightness-110 hover:scale-105 active:scale-95 text-white font-bold rounded-2xl shadow-lg shadow-violet-500/20 transition-all duration-200 disabled:opacity-50 disabled:hover:scale-100 inline-flex items-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
                 <span>{loading ? 'Generating Flashcards...' : 'Generate Flashcards'}</span>
@@ -778,14 +778,14 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
             </div>
           ) : (
             <div className="max-w-2xl mx-auto space-y-6">
-              <div className="flex justify-between items-center bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/60 px-6 py-4 rounded-2xl">
-                <span className="font-bold text-indigo-900 dark:text-indigo-200 text-sm">
+              <div className="flex justify-between items-center bg-violet-50 dark:bg-violet-950/50 border border-violet-100 dark:border-violet-900/60 px-6 py-4 rounded-2xl">
+                <span className="font-bold text-violet-900 dark:text-violet-200 text-sm">
                   Card {currentCardIndex + 1} of {aiResults.flashcards.length}
                 </span>
                 <button
                   onClick={handleGenerateFlashcards}
                   disabled={loading}
-                  className="px-4 py-2 bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-slate-700 font-semibold text-xs rounded-xl border border-indigo-200 dark:border-indigo-800 shadow-sm transition-all disabled:opacity-50"
+                  className="px-4 py-2 bg-white dark:bg-ink-800 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-ink-700 font-semibold text-xs rounded-xl border border-violet-200 dark:border-violet-800 shadow-sm transition-all disabled:opacity-50"
                 >
                   {loading ? 'Regenerating...' : 'Regenerate Flashcards'}
                 </button>
@@ -794,9 +794,9 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
               {/* Flashcard Flip Card */}
               <div
                 onClick={() => setIsFlipped(!isFlipped)}
-                className="bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 p-10 sm:p-14 shadow-md cursor-pointer min-h-[320px] flex flex-col justify-between transition-all relative overflow-hidden group select-none"
+                className="glass-card rounded-3xl border-2 border-paper-300 dark:border-ink-800 hover:border-violet-400 dark:hover:border-violet-600 p-10 sm:p-14 shadow-md cursor-pointer min-h-[320px] flex flex-col justify-between transition-all relative overflow-hidden group select-none"
               >
-                <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 px-3 py-1 rounded-full border border-indigo-100 dark:border-indigo-900">
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs font-bold text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-950 px-3 py-1 rounded-full border border-violet-100 dark:border-violet-900">
                   <FlipHorizontal className="w-3.5 h-3.5" />
                   <span>{isFlipped ? 'Answer Side' : 'Question Side (Click to Flip)'}</span>
                 </div>
@@ -805,7 +805,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 block">
                     {isFlipped ? 'Answer & Explanation' : 'Concept / Question'}
                   </span>
-                  <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-relaxed">
+                  <p className="text-xl sm:text-2xl font-bold text-ink-900 dark:text-white leading-relaxed">
                     {isFlipped
                       ? aiResults.flashcards[currentCardIndex].back
                       : aiResults.flashcards[currentCardIndex].front}
@@ -825,7 +825,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                     setCurrentCardIndex(prev => Math.max(0, prev - 1));
                   }}
                   disabled={currentCardIndex === 0}
-                  className="px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-40 flex items-center gap-2"
+                  className="px-5 py-3 rounded-2xl border border-paper-300 dark:border-ink-700 glass-card text-ink-700 dark:text-slate-300 font-bold text-sm hover:bg-paper-50 dark:hover:bg-ink-800 transition-all disabled:opacity-40 flex items-center gap-2"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span>Previous</span>
@@ -840,7 +840,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                         setCurrentCardIndex(idx);
                       }}
                       className={`w-3 h-3 rounded-full transition-all ${
-                        currentCardIndex === idx ? 'bg-indigo-600 dark:bg-indigo-500 w-6' : 'bg-slate-200 dark:bg-slate-800'
+                        currentCardIndex === idx ? 'bg-violet-600 dark:bg-violet-500 w-6' : 'bg-paper-300 dark:bg-ink-800'
                       }`}
                     />
                   ))}
@@ -852,7 +852,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                     setCurrentCardIndex(prev => Math.min(aiResults.flashcards!.length - 1, prev + 1));
                   }}
                   disabled={currentCardIndex === aiResults.flashcards.length - 1}
-                  className="px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-40 flex items-center gap-2"
+                  className="px-5 py-3 rounded-2xl border border-paper-300 dark:border-ink-700 glass-card text-ink-700 dark:text-slate-300 font-bold text-sm hover:bg-paper-50 dark:hover:bg-ink-800 transition-all disabled:opacity-40 flex items-center gap-2"
                 >
                   <span>Next</span>
                   <ChevronRight className="w-4 h-4" />
@@ -865,14 +865,14 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
 
       {/* Tab Content: Chat / Ask AI */}
       {activeTab === 'chat' && (
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col h-[600px] overflow-hidden">
-          <div className="p-6 bg-slate-50 dark:bg-slate-800/85 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div className="glass-card rounded-3xl border border-paper-300 dark:border-ink-800 shadow-md flex flex-col h-[600px] overflow-hidden animate-fade-up">
+          <div className="p-6 bg-paper-50 dark:bg-ink-800/85 border-b border-paper-100 dark:border-ink-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 rounded-xl bg-violet-600 text-white flex items-center justify-center shadow-md">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white">StudyMate AI Tutor</h3>
+                <h3 className="font-bold text-ink-900 dark:text-white">StudyMate AI Tutor</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Ask any question based on this study note</p>
               </div>
             </div>
@@ -881,10 +881,10 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
             {(!aiResults.chatHistory || aiResults.chatHistory.length === 0) ? (
               <div className="h-full flex flex-col items-center justify-center text-center p-8">
-                <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-3">
+                <div className="w-12 h-12 bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 rounded-2xl flex items-center justify-center mb-3">
                   <MessageSquare className="w-6 h-6" />
                 </div>
-                <h4 className="font-bold text-slate-800 dark:text-slate-200">Ask me anything about this note!</h4>
+                <h4 className="font-bold text-ink-800 dark:text-paper-300">Ask me anything about this note!</h4>
                 <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mt-1">
                   Example: "Explain the main concept in simple words" or "What are the practical applications?"
                 </p>
@@ -898,8 +898,8 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
                   <div
                     className={`max-w-[80%] rounded-2xl px-5 py-3.5 text-sm leading-relaxed shadow-sm ${
                       msg.sender === 'user'
-                        ? 'bg-indigo-600 text-white rounded-br-xs'
-                        : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-xs border border-slate-200 dark:border-slate-700'
+                        ? 'bg-violet-600 text-white rounded-br-xs'
+                        : 'bg-paper-100 dark:bg-ink-800 text-ink-800 dark:text-paper-300 rounded-bl-xs border border-paper-300 dark:border-ink-700'
                     }`}
                   >
                     <Markdown>{msg.text}</Markdown>
@@ -909,26 +909,26 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
             )}
             {chatLoading && (
               <div className="flex justify-start">
-                <div className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-3.5 text-sm text-slate-500 dark:text-slate-400 rounded-bl-xs animate-pulse flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400 animate-spin" />
+                <div className="bg-paper-100 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 rounded-2xl px-5 py-3.5 text-sm text-slate-500 dark:text-slate-400 rounded-bl-xs animate-pulse flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-violet-600 dark:text-violet-400 animate-spin" />
                   <span>StudyMate AI is thinking...</span>
                 </div>
               </div>
             )}
           </div>
 
-          <form onSubmit={handleSendMessage} className="p-4 bg-slate-50 dark:bg-slate-800/85 border-t border-slate-100 dark:border-slate-800 flex gap-3">
+          <form onSubmit={handleSendMessage} className="p-4 bg-paper-50 dark:bg-ink-800/85 border-t border-paper-100 dark:border-ink-800 flex gap-3">
             <input
               type="text"
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               placeholder="Ask a question about this note..."
-              className="flex-1 px-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-1 px-4 py-3 glass-card border border-paper-300 dark:border-ink-700 rounded-2xl text-ink-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
             <button
               type="submit"
               disabled={chatLoading || !chatInput.trim()}
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all disabled:opacity-50 flex items-center gap-2"
+              className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-2xl shadow-md transition-all disabled:opacity-50 flex items-center gap-2"
             >
               <span>Send</span>
               <Send className="w-4 h-4" />

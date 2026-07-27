@@ -19,6 +19,21 @@ export default function App() {
   const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
   const [editingNote, setEditingNote] = useState<Note | null>(null);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof document !== 'undefined' && document.documentElement.classList.contains('dark')) {
+      return 'dark';
+    }
+    return 'light';
+  });
+
+  const toggleTheme = () => {
+    setTheme(prev => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      document.documentElement.classList.toggle('dark', next === 'dark');
+      localStorage.setItem('studymate_theme', next);
+      return next;
+    });
+  };
 
   // Save user session & check onboarding
   useEffect(() => {
@@ -159,27 +174,30 @@ export default function App() {
   if (!user) {
     return (
       <div>
-        <AuthModal onLoginSuccess={handleLoginSuccess} />
+        <AuthModal onLoginSuccess={handleLoginSuccess} theme={theme} onToggleTheme={toggleTheme} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/40 to-blue-50/50 relative overflow-x-hidden font-sans text-slate-900 selection:bg-indigo-500 selection:text-white transition-colors">
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-paper-50 to-paper-100 dark:from-ink-950 dark:via-ink-950 dark:to-ink-900 relative overflow-x-hidden font-sans text-slate-900 dark:text-slate-100 selection:bg-gold-400 selection:text-ink-950 transition-colors duration-300">
       {/* Background study aesthetic image layer */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-[0.08] pointer-events-none -z-20 mix-blend-overlay"
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.05] dark:opacity-[0.04] pointer-events-none -z-20 mix-blend-overlay"
         style={{ backgroundImage: `url(${studyBg})` }}
       ></div>
 
-      {/* Ambient background glow accents */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
-      <div className="absolute top-1/3 right-1/4 w-[30rem] h-[30rem] bg-blue-400/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      {/* Ambient background glow accents — the "desk lamp" motif, gently drifting */}
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-violet-400/15 dark:bg-violet-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-float-slow"></div>
+      <div className="fixed top-1/3 right-1/4 w-[30rem] h-[30rem] bg-gold-400/10 dark:bg-gold-400/[0.06] rounded-full blur-3xl pointer-events-none -z-10 animate-float-slower"></div>
+      <div className="fixed bottom-0 left-1/3 w-72 h-72 bg-violet-300/10 dark:bg-violet-400/[0.06] rounded-full blur-3xl pointer-events-none -z-10 animate-float-slow"></div>
 
       <Navbar
         user={user}
         onLogout={handleLogout}
         onHome={() => setSelectedNote(null)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       <main>
