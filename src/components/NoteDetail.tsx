@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Markdown from 'react-markdown';
 import { Note, SummaryData, QuizQuestion, FlashcardItem, ChatMessage, AIResults } from '../types';
-import { ArrowLeft, Sparkles, FileText, HelpCircle, BookMarked, MessageSquare, CheckCircle, XCircle, RotateCcw, Send, ChevronLeft, ChevronRight, FlipHorizontal, Download, ChevronDown, Volume2, Square, Copy } from 'lucide-react';
+import { ArrowLeft, Sparkles, FileText, HelpCircle, BookMarked, MessageSquare, CheckCircle, XCircle, RotateCcw, Send, ChevronLeft, ChevronRight, FlipHorizontal, Volume2, Square, Copy } from 'lucide-react';
 
 interface NoteDetailProps {
   note: Note;
@@ -27,7 +27,6 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
   // Chat state
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
-  const [isExportOpen, setIsExportOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [copiedSummary, setCopiedSummary] = useState(false);
 
@@ -217,168 +216,6 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
     }
   };
 
-  const handleExportMarkdown = () => {
-    let md = `# ${note.title}\n`;
-    md += `**Subject:** ${note.subject}\n`;
-    md += `**Date:** ${new Date(note.createdAt).toLocaleDateString()}\n\n`;
-    md += `## Original Note Content\n${note.content}\n\n`;
-
-    if (aiResults.summary) {
-      md += `## AI Summary & Revision Notes\n`;
-      md += `${aiResults.summary.revisionNotes}\n\n`;
-
-      if (aiResults.summary.keyConcepts && aiResults.summary.keyConcepts.length > 0) {
-        md += `### Key Concepts\n`;
-        aiResults.summary.keyConcepts.forEach((c, i) => {
-          md += `${i + 1}. ${c}\n`;
-        });
-        md += `\n`;
-      }
-
-      if (aiResults.summary.importantPoints && aiResults.summary.importantPoints.length > 0) {
-        md += `### Important Points\n`;
-        aiResults.summary.importantPoints.forEach((p, i) => {
-          md += `- ${p}\n`;
-        });
-        md += `\n`;
-      }
-
-      if (aiResults.summary.bulletSummary && aiResults.summary.bulletSummary.length > 0) {
-        md += `### Bullet-Point Summary\n`;
-        aiResults.summary.bulletSummary.forEach((b) => {
-          md += `- ${b}\n`;
-        });
-        md += `\n`;
-      }
-    }
-
-    if (aiResults.quiz && aiResults.quiz.length > 0) {
-      md += `## Practice Quiz\n`;
-      aiResults.quiz.forEach((q, i) => {
-        md += `### Question ${i + 1}: ${q.question}\n`;
-        q.options.forEach((opt, oIdx) => {
-          md += `- [${oIdx === q.correctAnswer ? 'x' : ' '}] ${opt}\n`;
-        });
-        md += `*Explanation:* ${q.explanation}\n\n`;
-      });
-    }
-
-    if (aiResults.flashcards && aiResults.flashcards.length > 0) {
-      md += `## Active Recall Flashcards\n`;
-      aiResults.flashcards.forEach((fc, i) => {
-        md += `### Card ${i + 1}\n`;
-        md += `**Front:** ${fc.front}\n\n`;
-        md += `**Back:** ${fc.back}\n\n`;
-      });
-    }
-
-    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `${note.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_studymate.md`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handleExportPDF = () => {
-    setIsExportOpen(false);
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-      alert('Please allow popups for this website to export PDF.');
-      return;
-    }
-
-    let html = `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>${note.title} - StudyMate AI Guide</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; max-width: 800px; margin: 40px auto; padding: 0 20px; }
-    h1 { font-size: 28px; margin-bottom: 8px; color: #0f172a; }
-    .badge { display: inline-block; background: #e0e7ff; color: #3730a3; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold; margin-bottom: 24px; }
-    .section { margin-bottom: 32px; border-bottom: 1px solid #e2e8f0; padding-bottom: 24px; page-break-inside: avoid; }
-    h2 { font-size: 20px; color: #334155; margin-top: 24px; margin-bottom: 12px; }
-    h3 { font-size: 16px; color: #475569; margin-top: 16px; margin-bottom: 8px; }
-    p, li { font-size: 15px; color: #475569; }
-    ul { padding-left: 20px; }
-    .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 12px; page-break-inside: avoid; }
-    .card-front { font-weight: bold; color: #1e293b; margin-bottom: 6px; }
-    .card-back { color: #475569; }
-  </style>
-</head>
-<body>
-  <h1>${note.title}</h1>
-  <div class="badge">${note.subject}</div>
-  <p><em>Generated on ${new Date().toLocaleDateString()} via StudyMate AI</em></p>
-
-  <div class="section">
-    <h2>Original Note Content</h2>
-    <p style="white-space: pre-wrap; font-family: monospace; background: #f8fafc; padding: 16px; border-radius: 8px; font-size: 13px;">${note.content}</p>
-  </div>
-`;
-
-    if (aiResults.summary) {
-      html += `
-  <div class="section">
-    <h2>AI Summary & Revision Notes</h2>
-    <p><strong>Quick Revision:</strong> ${aiResults.summary.revisionNotes}</p>
-`;
-      if (aiResults.summary.keyConcepts && aiResults.summary.keyConcepts.length > 0) {
-        html += `<h3>Key Concepts</h3><ul>`;
-        aiResults.summary.keyConcepts.forEach(c => html += `<li>${c}</li>`);
-        html += `</ul>`;
-      }
-      if (aiResults.summary.importantPoints && aiResults.summary.importantPoints.length > 0) {
-        html += `<h3>Important Points</h3><ul>`;
-        aiResults.summary.importantPoints.forEach(p => html += `<li>${p}</li>`);
-        html += `</ul>`;
-      }
-      if (aiResults.summary.bulletSummary && aiResults.summary.bulletSummary.length > 0) {
-        html += `<h3>Bullet-Point Summary</h3><ul>`;
-        aiResults.summary.bulletSummary.forEach(b => html += `<li>${b}</li>`);
-        html += `</ul>`;
-      }
-      html += `</div>`;
-    }
-
-    if (aiResults.quiz && aiResults.quiz.length > 0) {
-      html += `<div class="section"><h2>Practice Quiz</h2>`;
-      aiResults.quiz.forEach((q, i) => {
-        html += `<div class="card"><strong>Q${i + 1}: ${q.question}</strong><ul>`;
-        q.options.forEach((opt, oIdx) => {
-          const isCorrect = oIdx === q.correctAnswer;
-          html += `<li ${isCorrect ? 'style="font-weight:bold; color:#059669;"' : ''}>${opt} ${isCorrect ? '(Correct Answer)' : ''}</li>`;
-        });
-        html += `</ul><p style="font-size:13px; margin-top:8px;"><em>Explanation:</em> ${q.explanation}</p></div>`;
-      });
-      html += `</div>`;
-    }
-
-    if (aiResults.flashcards && aiResults.flashcards.length > 0) {
-      html += `<div class="section"><h2>Active Recall Flashcards</h2>`;
-      aiResults.flashcards.forEach((fc, i) => {
-        html += `<div class="card"><div class="card-front">Card ${i + 1}: ${fc.front}</div><div class="card-back"><strong>Answer:</strong> ${fc.back}</div></div>`;
-      });
-      html += `</div>`;
-    }
-
-    html += `
-  <script>
-    window.onload = function() {
-      setTimeout(function() {
-        window.print();
-      }, 600);
-    };
-  </script>
-</body>
-</html>`;
-
-    printWindow.document.write(html);
-    printWindow.document.close();
-  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -407,41 +244,6 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({ note, onBack }) => {
             {isSpeaking ? <Square className="w-3.5 h-3.5 fill-current" /> : <Volume2 className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />}
             <span>{isSpeaking ? 'Stop Reading' : 'Read Aloud'}</span>
           </button>
-          <div className="relative">
-            <button
-              onClick={() => setIsExportOpen(!isExportOpen)}
-              className="inline-flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-violet-600 to-violet-500 hover:brightness-110 hover:scale-[1.03] active:scale-[0.98] text-white font-semibold text-xs rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
-              title="Export Study Material"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Export Study Guide</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-            {isExportOpen && (
-              <div className="absolute right-0 mt-2 w-56 glass-card border border-paper-300 dark:border-ink-800 rounded-2xl shadow-xl py-2 z-30 animate-fade-up">
-                <button
-                  onClick={() => {
-                    handleExportMarkdown();
-                    setIsExportOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2.5 text-xs font-medium text-ink-700 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-ink-800 flex items-center gap-2"
-                >
-                  <FileText className="w-3.5 h-3.5 text-violet-600" />
-                  <span>Download as Markdown (.md)</span>
-                </button>
-                <button
-                  onClick={() => {
-                    handleExportPDF();
-                    setIsExportOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2.5 text-xs font-medium text-ink-700 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-ink-800 flex items-center gap-2"
-                >
-                  <Download className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Print / Save as PDF</span>
-                </button>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 

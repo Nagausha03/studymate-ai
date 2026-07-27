@@ -1,6 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Note } from '../types';
 import { X, Upload, FileText, Sparkles, Check } from 'lucide-react';
+import * as pdfjsLib from 'pdfjs-dist';
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs?url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
+async function extractTextFromPdf(file: File): Promise<string> {
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+  const pageTexts: string[] = [];
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+    const textContent = await page.getTextContent();
+    const pageText = textContent.items
+      .map((item: any) => ('str' in item ? item.str : ''))
+      .join(' ');
+    pageTexts.push(pageText.trim());
+  }
+
+  return pageTexts.join('\n\n').trim();
+}
 
 interface NoteFormModalProps {
   isOpen: boolean;
@@ -39,7 +60,7 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -49,6 +70,23 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
     if (!title) {
       const nameWithoutExt = file.name.replace(/\.[^/.]+$/, "");
       setTitle(nameWithoutExt);
+    }
+
+    if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
+      try {
+        const text = await extractTextFromPdf(file);
+        if (text) {
+          setContent(text);
+        } else {
+          alert("No selectable text was found in this PDF (it may be a scanned/image-only document). Please paste the content manually.");
+        }
+      } catch (err) {
+        console.error("Failed to extract PDF text:", err);
+        alert("Failed to read the PDF. Please try another file or paste the content manually.");
+      } finally {
+        setLoadingFile(false);
+      }
+      return;
     }
 
     const reader = new FileReader();
@@ -63,13 +101,7 @@ export const NoteFormModal: React.FC<NoteFormModalProps> = ({
       alert("Failed to read file");
       setLoadingFile(false);
     };
-
-    if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-      setContent(`[Uploaded PDF Document: ${file.name}]\n\nStudy Notes extracted from ${file.name}:\n- Introduction to core topics\n- Key definitions and theorems\n- Important case studies and examples\n\n(Note: You can also paste or edit your text directly above).`);
-      setLoadingFile(false);
-    } else {
-      reader.readAsText(file);
-    }
+    reader.readAsText(file);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
